@@ -5,57 +5,36 @@ using UnityEngine;
 
 public class CCTVCameraController : MonoBehaviour
 {
-    
     public float turnSpeed = 5f;
 
     
     public float turnAngle = 90;
 
     
-    bool turningRight = true;
+    bool turningRight = !true;
 
     
+    Transform cameraLens;
+
+   
     void Start()
     {
-
+        Transform cameraPosition = transform.Find("CameraPosition");
+        cameraLens = cameraPosition.Find("Cylinder");
     }
 
     
     void Update()
     {
-        if (turningRight)
-        {
-            TurnRight();
-        }
-        else
-        {
-            TurnLeft();
-        }
-        CheckAngle();
-    }
-    void TurnRight()
-    {
-        
-        transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed);
-    }
-    void TurnLeft()
-    {
        
-        transform.Rotate(Vector3.down * Time.deltaTime * turnSpeed);
+        transform.rotation = Quaternion.Euler(new Vector3(0, Mathf.PingPong(Time.time, 9) * 10 - 45, 0));
+
+        CheckIfPlayerVisible();
     }
-    void CheckAngle()
+
+    void CheckIfPlayerVisible()
     {
-       
-        if (transform.eulerAngles.y > 45)
-        {
-            
-            turningRight = false;
-        }
-        if (transform.eulerAngles.y < 315)
-        {
-            
-            turningRight = true;
-        }
-        Debug.Log("y: " + transform.eulerAngles.y + "turningRight: " + turningRight);
+        Debug.DrawRay(cameraLens.position, cameraLens.TransformDirection(Vector3.down) * 100, Color.yellow);
     }
+
 }
