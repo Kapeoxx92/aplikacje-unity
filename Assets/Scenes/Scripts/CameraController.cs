@@ -40,4 +40,9 @@ public class CameraController : MonoBehaviour
         //u¿yj smooothdamp
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref cameraSpeed, smoothTime);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("BOOM");
+    }
 }
