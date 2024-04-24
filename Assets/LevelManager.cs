@@ -38,12 +38,12 @@ public class LevelManager : MonoBehaviour
     public void OnWin()
     {
         GameOver.SetActive(true);
-        GameOver.transform.Find("ReasonText").GetComponent<TextMeshProUGUI>().text = "Wygrałeś!";
+        GameOver.transform.Find("ReasonText").GetComponent<TextMeshProUGUI>().text = "WYGRAŁEŚ!";
 
     }
     public void OnLose()
     {
         GameOver.SetActive(true);
-        GameOver.transform.Find("ReasonText").GetComponent<TextMeshProUGUI>().text = "Kamera cię zobaczyla!";
+        GameOver.transform.Find("ReasonText").GetComponent<TextMeshProUGUI>().text = "KONIEC GRY Kamera cię zobaczyla!";
     }
 }
